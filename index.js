@@ -2,45 +2,97 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 //Create an array of questions for user input
+const generateHTML = ({ projectTitle, description, installation, usage, license, contribution, tests, username, email}) =>
+  `# ${projectTitle}
+
+  ## Description
+  
+  ${description}
+  
+  ## Installation
+  
+  ${installation}
+  
+  ## Usage
+  
+  ${usage}
+  
+  ## License
+  
+  ${license}
+  
+  ---
+  
+  
+  ## Badges
+  
+  ## How to Contribute
+
+  ${contribution}
+  
+  ## Tests
+
+  ${tests}
+  
+  ## Questions
+
+  ${username}
+  ${email}
+ `
 inquirer
   .prompt([
     {
       type: 'input',
-      message: 'What is your project title?',
       name: 'projectTitle',
+      message: 'What is your project title?',
     },
     {
       type: 'input',
-      message: 'Describe your project',
       name: 'description',
+      message: 'Provide a short description explaining the what, why, and how of your project'
     },
     {
       type: 'input',
-      message: 'What are the steps required to install your project?',
       name: 'installation',
+      message: 'What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.'
     },
     {
       type: 'input',
-      message: 'Provide instructions and examples for use',
       name: 'usage',
+      message: 'Provide instructions and examples for use.'
+    },
+    {
+      type: 'checkbox',
+      message: 'What license would you like to use?',
+      name: 'license',
+      choices: ['MIT'],
     },
     {
       type: 'input',
-      message: 'Provide contribution guidelines',
       name: 'contribution',
+      message: 'Provide instructions for how to contribute'
     },
     {
       type: 'input',
-      message: 'Provide any examples on how to run tests on your project',
-      name: 'contribution',
+      name: 'tests',
+      message: 'Provide instructions for testing'
+    },
+    {
+      type: 'input',
+      name: 'username',
+      message: 'What is your GitHub username?'
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'What is your email?'
     }
-  ]);
-// TODO: Create a function to write README file
-//function writeToFile(fileName, data) {}
+  ])
+  .then((answers) => {
+    const htmlPageContent = generateHTML(answers);
 
-// TODO: Create a function to initialize app
-//function init() {}
-
-// Function call to initialize app
-//init();
+    fs.writeFile('dynamicREADME.md', htmlPageContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created dynamicREADME.md!')
+    );
+  });
  
