@@ -1,5 +1,5 @@
   
-  # asdl;kfj
+  # Generate Dynamic README
  
   ## Description
 
@@ -11,15 +11,15 @@
   * [License](#license)
   * [Questions](#questions)
   
-  sadl;kjf
+  The purpose of this application is to dynamically create a README file based on user input
   
   ## Installation
 
-  as;dlkjf
+  You need to install inquirer, fs, and path utilizing npm
 
   ## Usage
 
-  asdlkjf
+  You need to clone the code and run it in your environment
 
   ## License
 
@@ -33,12 +33,12 @@
 
   ## Contributing
 
-  a;dlskfj
+  If you want to contribute, make sure to fork this repository
   
   ## Tests
 
-  adls;kfj
+  To test, run the code in your terminal by using the command "node .\index.js"
   
   ## Questions
-  If you have any questions, you may contact me via email at adsl;kjf or you may follow me on <a href="https://github.com/adsl;kfj">Github</a>
+  If you have any questions, you may contact me via email at cmizelle10@gmail.com or you may follow me on <a href="https://github.com/cmizelle10">Github</a>
 
