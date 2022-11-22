@@ -1,49 +1,14 @@
 //Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-//Create an array of questions for user input
-const generateHTML = ({ projectTitle, description, installation, usage, license, contribution, tests, username, email}) =>
-  `# ${projectTitle}
+const path = require('path');
+const generateMarkdown = require('./utils/generateMarkdown');
 
-  ## Description
-  
-  ${description}
-  
-  ## Installation
-  
-  ${installation}
-  
-  ## Usage
-  
-  ${usage}
-  
-  ## License
-  
-  ${license}
-  
-  ---
-  
-  
-  ## Badges
-  
-  ## How to Contribute
-
-  ${contribution}
-  
-  ## Tests
-
-  ${tests}
-  
-  ## Questions
-
-  ${username}
-  ${email}
- `
 inquirer
   .prompt([
     {
       type: 'input',
-      name: 'projectTitle',
+      name: 'title',
       message: 'What is your project title?',
     },
     {
@@ -65,7 +30,7 @@ inquirer
       type: 'checkbox',
       message: 'What license would you like to use?',
       name: 'license',
-      choices: ['MIT'],
+      choices: ['MIT']
     },
     {
       type: 'input',
@@ -88,10 +53,10 @@ inquirer
       message: 'What is your email?'
     }
   ])
-  .then((answers) => {
-    const htmlPageContent = generateHTML(answers);
+  .then((data) => {
+    const readmeContent = generateMarkdown(data);
 
-    fs.writeFile('dynamicREADME.md', htmlPageContent, (err) =>
+    fs.writeFile('dynamicREADME.md', readmeContent, (err) =>
       err ? console.log(err) : console.log('Successfully created dynamicREADME.md!')
     );
   });
